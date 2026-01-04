@@ -47,7 +47,7 @@ int main() {
             continue;
         }
         printf("Connection Correctly established with client.\n"); 
-        n = read(fd_client, buffer_1,BUFFER_SIZE - 1);
+        bytes_read = read(fd_client, buffer_1,BUFFER_SIZE - 1);
         if (bytes_read > 0) {
             buffer_1[bytes_read] = "\0";
             printf("%s", buffer_1);
