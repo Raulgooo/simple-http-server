@@ -17,12 +17,6 @@ int main() {
     int fd_client;
     char buffer_1[BUFFER_SIZE];
     struct sockaddr_in server_addr;
-    struct linked_list
-    {
-        int next_node;
-        char body[];
-        int previous_node;
-    }
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(PORT);
