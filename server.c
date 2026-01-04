@@ -29,4 +29,9 @@ int main() {
 
     }
     printf("Succesful bind\n");
+    if (listen(tcp_socket, BACKLOG_SIZE) < 0) {
+        perror("listen");
+        exit(1);
+        printf("Socket turned to passive state.")
+    }
 }
