@@ -8,15 +8,15 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define PORT 8080;
-#define BUFFER_SIZE 1024;
-#define BACKLOG_SIZE 12;
+#define PORT 8080
+#define BUFFER_SIZE 1024
+#define BACKLOG_SIZE 12
 
 int main() {
     struct sockaddr_in server_addr;
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
-    server_addr.sin_port = PORT;
+    server_addr.sin_port = htons(PORT);
     server_addr.sin_addr.s_addr = INADDR_ANY;
     int tcp_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (tcp_socket < 0) {
@@ -28,5 +28,5 @@ int main() {
         exit(1);
 
     }
-    printf("Succesful bind");
+    printf("Succesful bind\n");
 }
