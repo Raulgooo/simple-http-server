@@ -48,8 +48,8 @@ int main() {
         }
         printf("Connection Correctly established with client.\n"); 
         n = read(fd_client, buffer_1,BUFFER_SIZE - 1);
-        if (n > 0) {
-            buffer_1[n] = "\0";
+        if (bytes_read > 0) {
+            buffer_1[bytes_read] = "\0";
             printf("%s", buffer_1);
         }
 
