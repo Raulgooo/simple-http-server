@@ -15,6 +15,7 @@
 int main() {
     int tcp_socket;
     int fd_client;
+    int bytes_read;
     char buffer_1[BUFFER_SIZE];
     struct sockaddr_in server_addr;
     memset(&server_addr, 0, sizeof(server_addr));
@@ -46,8 +47,12 @@ int main() {
             continue;
         }
         printf("Connection Correctly established with client.\n"); 
-        read(fd_client, buffer_1,BUFFER_SIZE);
-        printf("%s", buffer_1);
+        n = read(fd_client, buffer_1,BUFFER_SIZE - 1);
+        if (n > 0) {
+            buffer_1[n] = "\0";
+            printf("%s", buffer_1);
+        }
+
 
     }
 }
