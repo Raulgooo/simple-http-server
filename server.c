@@ -13,12 +13,14 @@
 #define BACKLOG_SIZE 12
 
 int main() {
+    int tcp_socket;
+    int fd_client;
     struct sockaddr_in server_addr;
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(PORT);
     server_addr.sin_addr.s_addr = INADDR_ANY;
-    int tcp_socket = socket(AF_INET, SOCK_STREAM, 0);
+    tcp_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (tcp_socket < 0) {
         perror("socket");
         exit(1);
@@ -28,10 +30,20 @@ int main() {
         exit(1);
 
     }
-    printf("Succesful bind\n");
+    printf("Succesful bind.\n");
     if (listen(tcp_socket, BACKLOG_SIZE) < 0) {
         perror("listen");
         exit(1);
-        printf("Socket turned to passive state.")
+        
+    }
+    printf("Socket turned to passive state.\n");
+
+    while (1) {
+        fd_client = accept(tcp_socket, NULL, NULL);
+        if (fd_client < 0) {
+            perror("accept");
+            continue;
+        }
+        printf("Connection Correctly established with client.\n");        
     }
 }
