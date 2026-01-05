@@ -51,6 +51,7 @@ int main() {
         if (bytes_read > 0) {
             buffer_1[bytes_read] = '\0';
             printf("%s", buffer_1);
+            close(fd_client);
         }
 
 
